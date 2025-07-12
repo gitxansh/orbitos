@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Productivity Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="stylecalendar.css">  
+  
+</head>
+<body>
+
+    <main class="content-body">
+        <header class="header">
+            <h1>📅 Calendar & Events</h1>
+            <div class="header-actions">
+                <button id="theme-toggle-btn" class="theme-btn">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="index.html" class="back-btn">← Back to Home</a>
+            </div>
+        </header>
+
+        <div class="top-section">
+            <section class="calendar-container">
+                <div class="calendar-nav">
+                    <button id="prevMonth">← Previous</button>
+                    <div class="current-month" id="currentMonth">January 2025</div>
+                    <button id="nextMonth">Next →</button>
+                </div>
+                
+                <div class="calendar-grid" id="calendarGrid">
+                    </div>
+            </section>
+
+<section class="event-form">
+                <h3>Add New Event</h3>
+                <form id="eventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title</label>
+                        <input type="text" id="eventTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" placeholder="Event details..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">Date</label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Time</label>
+                            <input type="time" id="eventTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventType">Type</label>
+                            <select id="eventType">
+                                <option value="meeting">Meeting</option>
+                                <option value="appointment">Appointment</option>
+                                <option value="deadline">Deadline</option>
+                                <option value="personal">Personal</option>
+                                <option value="reminder">Reminder</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPriority">Priority</label>
+                            <select id="eventPriority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Add Event</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="weekly-view" id="weeklyView" style="display: none;">
+            </div>
+
+        <div class="bottom-section">
+            
+            <section class="upcoming-events">
+                <h3>Upcoming Events</h3>
+                <div id="upcomingEventsList">
+                    </div>
+            </section>
+
+            <section class="analytics-panel">
+                <h3>Event Analytics</h3>
+                <div class="chart-container">
+                    <canvas id="eventChart"></canvas>
+                </div>
+                <div class="analytics-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalEvents">0</div>
+                        <div class="stat-label">Total Events</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="thisWeekEvents">0</div>
+                        <div class="stat-label">This Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="upcomingEvents">0</div>
+                        <div class="stat-label">Upcoming</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="overdueTasks">0</div>
+                        <div class="stat-label">Overdue</div>
+                    </div>
+                </div>
+            </section>
+             <section class="quick-actions">
+                <h3>Quick Actions</h3>
+                <button class="action-btn" onclick="app.openEventModal()">➕ Add Event</button>
+                <button class="action-btn secondary" onclick="app.toggleWeekView()">📊 Toggle Weekly View</button>
+                <button class="action-btn" onclick="app.exportCalendar()">📤 Export Calendar</button>
+                <button class="action-btn secondary" onclick="app.showAnalytics()">📈 View Analytics</button>
+            </section>
+        </div>
+
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Event Details</h3>
+                    <button class="close-btn" onclick="app.closeEventModal()">&times;</button>
+                </div>
+                <div id="eventDetails">
+                    </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="scriptcalendar.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+ /* Base Styles */
+        :root {
+            --bg-color: #a0c4ff;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --primary-color: #4f46e5;
+            --primary-text: #ffffff;
+            --border-color: #e2e8f0;
+            --heading-color: #1e3a8a;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* Main Layout */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .header h1 { 
+            color: var(--heading-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .back-btn {
+            background-color: var(--primary-color);
+            color: var(--primary-text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        .back-btn:hover {
+            background-color: #3730a3;
+        }
+
+        /* Main Grid */
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .grid-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Activity Panel - Full Width */
+        .activity-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-out;
+            grid-column: 1 / -1;
+        }
+        
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .grid-panel h3 {
+            color: var(--heading-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* BMI Card */
+        .bmi-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .bmi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .bmi-category {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .calorie-info {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        .goal-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .goal-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+        .goal-btn:hover {
+            transform: translateY(-2px);
+        }
+        .weight-loss {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        .weight-gain {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        /* Daily Tracker */
+        .tracker-item { 
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+        .tracker-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 0.8rem; 
+        }
+        .tracker-title { 
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .tracker-value { 
+            font-size: 0.9rem; 
+            color: #64748b;
+            font-weight: 600;
+        }
+        .tracker-progress { 
+            width: 100%; 
+            height: 10px; 
+            background-color: #e5e7eb; 
+            border-radius: 6px; 
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .tracker-progress-fill { 
+            height: 100%; 
+            transition: width 0.5s ease;
+        }
+        .water-fill { background: linear-gradient(90deg, #38bdf8, #0ea5e9); }
+        .steps-fill { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        
+        /* Intake Buttons */
+        .intake-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .intake-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+        .intake-btn:hover {
+            background-color: #3730a3;
+            transform: translateY(-1px);
+        }
+        .remove-btn {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+        .remove-btn:hover {
+            background-color: #dc2626;
+            transform: translateY(-1px);
+        }
+
+        /* Calories Info */
+        .calories-info {
+            text-align: center;
+            padding: 1rem;
+        }
+        .calories-big {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--warning-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .calories-info small {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: normal;
+        }
+
+        /* Sleep Tracker */
+        .sleep-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .sleep-duration {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .sleep-quality {
+            font-size: 1rem;
+        }
+        .sleep-icon {
+            margin-right: 0.5rem;
+        }
+        .sleep-tips {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .sleep-tips h4 {
+            color: var(--heading-color);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+        .sleep-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sleep-tips li {
+            padding: 0.3rem 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .sleep-tips li:before {
+            content: "✓ ";
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        /* Health Goals */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+        .goal-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .goal-item:hover {
+            transform: translateY(-3px);
+        }
+        .goal-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        .goal-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .goal-desc {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            line-height: 1.2;
+        }
+        .goal-item:nth-child(1) { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .goal-item:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .goal-item:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .goal-item:nth-child(4) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        
+        /* Chart */
+        .chart-container { height: 300px; }
+
+        /* Form */
+        .metric-form { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+        }
+        .form-row { 
+            display: flex; 
+            gap: 1rem; 
+        }
+        .form-group { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.5rem; 
+        }
+        .form-group label { 
+            font-weight: 600; 
+            font-size: 0.9rem;
+            color: var(--heading-color);
+        }
+        .form-group input, .form-group select { 
+            padding: 0.8rem; 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        .submit-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s ease;
+        }
+        .submit-btn:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .health-grid { 
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .goals-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.8rem;
+            }
+            .form-row { flex-direction: column; }
+            .header h1 { font-size: 2rem; }
+            .intake-buttons { flex-wrap: wrap; }
+            .goal-buttons { flex-direction: column; }
+        }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit - Productivity Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="content-body">
+
+        <header class="welcome-banner">
+            <div class="header-top">
+                <div class="theme-toggle">
+                    <button id="theme-toggle-btn" class="theme-btn">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+            <h1 id="greeting"></h1>
+            <p id="datetime"></p>
+        </header>
+
+        <nav class="nav-grid">
+            <a href="healthy.html" class="nav-card">
+                <div class="icon">🏥</div>
+                <span>Fitness Tracker</span>
+            </a>
+            <a href="calendar.html" class="nav-card">
+                <div class="icon">📅</div>
+                <span>Calendar</span>
+            </a>
+            <a href="budget.html" class="nav-card">
+                <div class="icon">💰</div>
+                <span>Budget Tracker</span>
+            </a>
+             
+            <a href="habit.html" class="nav-card">
+                <div class="icon">🎯</div>
+                <span>Habit Tracker</span>
+            </a>
+            <a href="itodo.html" class="nav-card">
+                <div class="icon">📋</div>
+                <span>To-Do List</span>
+            </a>
+        </nav>
+        
+        <div class="dashboard-grid">
+            <section class="dashboard-card" id="today-focus">
+                <h3><b>Today's Focus!</b></h3>
+                <ul id="highPriorityTasksList">
+                    </ul>
+            </section>
+
+            <!--
+            <section class="dashboard-card" id="weather-card">
+                <h3>Weather</h3>
+                <div class="weather-details">
+                    <div class="location-info" id="location">📍 Patna</div>
+                    <div class="weather-icon" id="weatherIcon">☀️</div>
+                    <div class="temperature" id="temperature">--°C</div>
+                    <div class="weather-description" id="weatherDescription">Loading...</div>
+                    <div class="feels-like" id="feelsLike">Feels like --°C</div>
+                </div>
+            </section>
+            -->
+
+            <section class="dashboard-card" id="quick-notes">
+                <h3>Quick Notes</h3>
+                <textarea placeholder="Jot down a quick thought..."></textarea>
+            </section>
+        </div>
+
+        <section class="quote-container">
+            <blockquote id="quote-text">
+                <p>Loading your elixir...</p>
+            </blockquote>
+            <button id="next-quote-btn">Next Quote</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

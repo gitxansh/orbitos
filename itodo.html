@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - Productivity Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style rel="stylesheet" href="styletodo.css"></style>
+</head>
+<body>
+
+    <main class="content-body">
+        <header class="header">
+            <h1>📋 To-Do List Manager</h1>
+            <div class="header-actions">
+                <button id="theme-toggle-btn" class="theme-btn">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="index.html" class="back-btn">← Back to Home</a>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <section class="task-input-section">
+                <h3>Add New Task</h3>
+                <form class="task-form" id="taskForm">
+                    <input type="text" id="taskTitle" placeholder="Task title" required>
+                    <textarea id="taskDescription" placeholder="Task description (optional)"></textarea>
+                    <div class="form-row">
+                        <select id="taskPriority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <select id="taskCategory">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="study">Study</option>
+                            <option value="health">Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="date" id="taskDueDate">
+                        <input type="time" id="taskDueTime">
+                    </div>
+                    <button type="submit" class="add-task-btn">Add Task</button>
+                </form>
+            </section>
+
+            <section class="stats-panel">
+                <h3>Task Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalTasks">0</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completedTasks">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pendingTasks">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completionRate">0%</div>
+                        <div class="stat-label">Completion Rate</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="tasksChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <div class="task-lists">
+            <section class="task-list">
+                <h3>Pending Tasks</h3>
+                <div id="pendingTasksList">
+                    </div>
+            </section>
+
+            <section class="task-list">
+                <h3>Completed Tasks</h3>
+                <div id="completedTasksList">
+                    </div>
+            </section>
+        </div>
+
+        <div class="analytics-section">
+            <section class="analytics-panel">
+                <h3>Weekly Productivity</h3>
+                <div class="productivity-chart">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+            </section>
+
+            <section class="analytics-panel">
+                <h3>Tasks by Category</h3>
+                <div class="category-breakdown" id="categoryBreakdown">
+                    </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="scripttodo.js"></script>
+</body>
+</html>

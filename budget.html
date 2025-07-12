@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker - Productivity Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylebudget.css">
+</head>
+<body>
+
+    <main class="content-body">
+        <header class="header">
+            <h1>💰 Budget Tracker</h1>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="index.html" class="back-btn">← Back to Home</a>
+            </div>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card income">
+                <div class="summary-icon">💰</div>
+                <div class="summary-amount" id="totalIncome">₹0</div>
+                <div class="summary-label">Total Income</div>
+            </div>
+            <div class="summary-card expense">
+                <div class="summary-icon">💸</div>
+                <div class="summary-amount" id="totalExpense">₹0</div>
+                <div class="summary-label">Total Expenses</div>
+            </div>
+            <div class="summary-card savings">
+                <div class="summary-icon">🏦</div>
+                <div class="summary-amount" id="totalSavings">₹0</div>
+                <div class="summary-label">Total Savings</div>
+            </div>
+            <div class="summary-card investment">
+                <div class="summary-icon">📈</div>
+                <div class="summary-amount" id="totalInvestment">₹0</div>
+                <div class="summary-label">Total Investment</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Transaction Form -->
+            <section class="transaction-form">
+                <h3>Add Transaction</h3>
+                
+                <div class="transaction-tabs">
+                    <button class="tab-btn income active" data-type="income">Income</button>
+                    <button class="tab-btn expense" data-type="expense">Expense</button>
+                    <button class="tab-btn savings" data-type="savings">Savings</button>
+                    <button class="tab-btn investment" data-type="investment">Investment</button>
+                </div>
+
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" placeholder="Enter description" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amount" placeholder="0.00" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <!-- Categories will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">Add Transaction</button>
+                </form>
+            </section>
+
+            <!-- Recent Transactions -->
+            <section class="recent-transactions">
+                <h3>Recent Transactions</h3>
+                <div id="transactionsList">
+                    <div class="empty-state">
+                        <div class="icon">💳</div>
+                        <h4>No transactions yet</h4>
+                        <p>Add your first transaction to get started!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <h3>Category Breakdown</h3>
+            <div class="category-breakdown" id="categoryBreakdown">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="scriptbudget.js"></script>
+</body>
+</html>

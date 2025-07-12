@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="stylehealth.css">
+</head>
+<body>
+
+    <main>
+        <header class="header">
+            <h1>🏥 Health Tracker</h1>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </header>
+
+        <div class="health-grid">
+            <!-- BMI & Profile Setup -->
+            <section class="grid-panel">
+                <h3>🧮 Health Profile</h3>
+                <form class="metric-form" id="profileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" placeholder="e.g., 175" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" step="0.1" id="weight" placeholder="e.g., 70.5" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Calculate BMI</button>
+                </form>
+
+                <div id="bmiResults" style="display: none; margin-top: 1rem;">
+                    <div class="bmi-card">
+                        <div class="bmi-value">BMI: <span id="bmiValue">0</span></div>
+                        <div class="bmi-category" id="bmiCategory">Normal</div>
+                        <div class="calorie-info">
+                            <div>Daily Calories: <span id="dailyCalories">0</span></div>
+                            <div class="goal-buttons">
+                                <button class="goal-btn weight-loss" onclick="healthTracker.setGoal('loss')">Weight Loss (-400 cal)</button>
+                                <button class="goal-btn weight-gain" onclick="healthTracker.setGoal('gain')">Weight Gain (+400 cal)</button>
+                            </div>
+                            <div id="goalCalories" style="display: none;">Goal: <span id="goalCalorieValue">0</span> calories</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sleep Tracker -->
+            <section class="grid-panel">
+                <h3>😴 Sleep Tracker</h3>
+                
+                <form class="metric-form" id="sleepForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bedTime">Sleep Time</label>
+                            <input type="time" id="bedTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wakeTime">Wake Time</label>
+                            <input type="time" id="wakeTime" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Record Sleep</button>
+                </form>
+
+                <div id="sleepResults" style="display: none; margin-top: 1rem;">
+                    <div class="sleep-summary">
+                        <div class="sleep-duration">
+                            <span class="sleep-icon">⏰</span>
+                            Sleep Duration: <span id="sleepDuration">0h 0m</span>
+                        </div>
+                        <div class="sleep-quality" id="sleepQuality">
+                            <span class="sleep-icon">⭐</span>
+                            Quality: Good
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sleep-tips">
+                    <h4>💡 Sleep Tips</h4>
+                    <ul>
+                        <li>Aim for 7-9 hours of sleep</li>
+                        <li>Keep consistent sleep schedule</li>
+                        <li>Avoid screens 1 hour before bed</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Health Goals -->
+            <section class="grid-panel">
+                <h3>🎯 Health Goals</h3>
+                <div class="goals-grid">
+                    <div class="goal-item">
+                        <span class="goal-icon">💧</span>
+                        <div class="goal-title">Stay Hydrated</div>
+                        <div class="goal-desc">Drink 8-10 glasses daily</div>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-icon">🏃</span>
+                        <div class="goal-title">Exercise</div>
+                        <div class="goal-desc">30 min daily activity</div>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-icon">🥗</span>
+                        <div class="goal-title">Healthy Eating</div>
+                        <div class="goal-desc">5 servings fruits/veggies</div>
+                    </div>
+                    <div class="goal-item">
+                        <span class="goal-icon">😴</span>
+                        <div class="goal-title">Quality Sleep</div>
+                        <div class="goal-desc">7-9 hours nightly</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Daily Activity Tracker - Full Width -->
+        <section class="activity-panel">
+            <h3>📊 Today's Activity Dashboard</h3>
+            
+            <div class="activity-grid">
+                <div class="tracker-item">
+                    <div class="tracker-header">
+                        <div class="tracker-title">💧 Water Intake</div>
+                        <div class="tracker-value"><span id="waterCurrent">0</span> / 2.5 L</div>
+                    </div>
+                    <div class="tracker-progress">
+                        <div id="waterProgress" class="tracker-progress-fill water-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="intake-buttons">
+                        <button class="intake-btn" onclick="healthTracker.addWater(0.5)">+500ml</button>
+                        <button class="remove-btn" onclick="healthTracker.removeWater(0.5)">-500ml</button>
+                    </div>
+                </div>
+
+                <div class="tracker-item">
+                    <div class="tracker-header">
+                        <div class="tracker-title">👟 Steps</div>
+                        <div class="tracker-value"><span id="stepsCurrent">0</span> / 10,000</div>
+                    </div>
+                    <div class="tracker-progress">
+                        <div id="stepsProgress" class="tracker-progress-fill steps-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="intake-buttons">
+                        <button class="intake-btn" onclick="healthTracker.addSteps(1000)">+1000</button>
+                        <button class="remove-btn" onclick="healthTracker.removeSteps(1000)">-1000</button>
+                    </div>
+                </div>
+
+                <div class="tracker-item">
+                    <div class="tracker-header">
+                        <div class="tracker-title">🔥 Calories Burned</div>
+                    </div>
+                    <div class="calories-info">
+                        <span class="calories-big" id="caloriesBurned">0</span>
+                        <small>calories burned today</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="scripthealth.js"></script>
+</body>
+</html>
